@@ -5,13 +5,21 @@ const SG_ID = import.meta.env.VITE_SEATGEEK_CLIENT_ID
 const BASE = 'https://api.seatgeek.com/2'
 
 export async function searchSeatGeek(query: string, city = ''): Promise<TicketEvent[]> {
+  const now = new Date().toISOString().split('T')[0]
+  const end = new Date()
+  end.setMonth(end.getMonth() + 6)
+  const endDate = end.toISOString().split('T')[0]
+
   try {
     const { data } = await axios.get(`${BASE}/events`, {
       params: {
         client_id: SG_ID,
         q: query || undefined,
         'venue.city': city || undefined,
-        per_page: 20,
+        'venue.country': 'CA',
+        'datetime_local.gte': now,
+        'datetime_local.lte': endDate,
+        per_page: 50,
         sort: 'datetime_local.asc',
       },
     })

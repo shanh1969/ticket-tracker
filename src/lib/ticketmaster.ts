@@ -4,16 +4,29 @@ import type { TicketEvent } from '@/types/event'
 const TM_KEY = import.meta.env.VITE_TICKETMASTER_API_KEY
 const BASE = 'https://app.ticketmaster.com/discovery/v2'
 
+function getSixMonthRange() {
+  const now = new Date()
+  const end = new Date()
+  end.setMonth(end.getMonth() + 6)
+  return {
+    startDateTime: now.toISOString().replace(/\.\d{3}Z$/, 'Z'),
+    endDateTime: end.toISOString().replace(/\.\d{3}Z$/, 'Z'),
+  }
+}
+
 export async function searchEvents(query: string, city = ''): Promise<TicketEvent[]> {
+  const { startDateTime, endDateTime } = getSixMonthRange()
   try {
     const { data } = await axios.get(`${BASE}/events.json`, {
       params: {
         apikey: TM_KEY,
         keyword: query || undefined,
         city: city || undefined,
-        size: 20,
+        countryCode: 'CA',
+        size: 50,
         sort: 'date,asc',
-        classificationName: 'music,sports',
+        startDateTime,
+        endDateTime,
       },
     })
     const events = data._embedded?.events || []

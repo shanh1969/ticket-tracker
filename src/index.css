@@ -7,8 +7,12 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
-  background: #0f0f0f;
-  color: #f1f1f1;
+  background-color: #f0f2f5;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(99,102,241,0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+  color: #1f2937;
+  min-height: 100vh;
 }
 
 #root {
