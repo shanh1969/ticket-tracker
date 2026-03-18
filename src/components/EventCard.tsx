@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { format, parseISO, formatDistanceToNow, isPast } from 'date-fns'
-import { MapPin, Calendar, Tag, DollarSign, ExternalLink, Plus, Loader2, Check, TrendingUp, BarChart3, Clock, Ticket } from 'lucide-react'
+import { MapPin, Calendar, Tag, DollarSign, ExternalLink, Plus, Loader2, Check, TrendingUp, BarChart3 } from 'lucide-react'
 import type { TicketEvent } from '@/types/event'
 
 interface Props {
