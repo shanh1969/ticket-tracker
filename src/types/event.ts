@@ -4,7 +4,9 @@ export interface TicketEvent {
   type: 'concert' | 'sports' | 'other'
   venue: string
   city: string
+  address: string | null
   date: string
+  doorsTime: string | null
   onSaleDate: string | null
   preSaleDate: string | null
   imageUrl: string
@@ -14,4 +16,15 @@ export interface TicketEvent {
   platform: 'ticketmaster' | 'seatgeek'
   genre: string
   presaleCodes: string[]
+  // Resale market data
+  resaleMinPrice: number | null
+  resaleMaxPrice: number | null
+  resaleAvgPrice: number | null
+  resaleMedianPrice: number | null
+  resaleListingCount: number | null
+  // Estimated profit potential
+  estimatedResaleValue: number | null   // projected resale price per ticket
+  estimatedProfit: number | null        // per ticket after fees
+  profitMarginPct: number | null        // percentage return
+  demandScore: number | null            // 0-100 demand indicator
 }
